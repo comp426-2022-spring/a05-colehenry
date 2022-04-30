@@ -29,6 +29,8 @@
   "homepage": "https://github.com/comp426-2022-spring/a05-johnmar3#readme",
   "dependencies": {
     "better-sqlite3": "^7.5.1",
+    "browser-sync": "^2.27.9",
+    "cors": "^2.8.5",
     "curl": "^0.1.4",
     "express": "^4.18.1",
     "minimist": "^1.2.6",
