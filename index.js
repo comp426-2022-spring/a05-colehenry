@@ -1,24 +1,18 @@
 // Place your server entry point code here
-
 const express = require('express')
-
 const db = require("./src/services/database.js")
 const app = express()
-
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+//
+app.use(express.static("./public"))
+//
 const morgan = require('morgan')
 const fs = require('fs')
-
 const http = require('http')
-
 const args = require('minimist')(process.argv.slice(2))
-//console.log(args)
 
 //port
 const port = args.port || process.env.PORT || 5000 
-
 args['port', 'help', 'debug', 'log']
 
 //help
@@ -144,3 +138,9 @@ app.get('/app/flip/call/tails', (req, res) => {
 app.use(function(req, res){
     res.status(404).send('404 NOT FOUND')
 });
+
+process.on('SIGTERM', () => {
+    server.close(() => {
+        console.log('Server stopped')
+    })
+})
