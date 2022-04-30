@@ -2,7 +2,7 @@
 
 const express = require('express')
 
-const db = require("./database.js")
+const db = require("./src/services/database.js")
 const app = express()
 
 app.use(express.urlencoded({ extended: true }));
