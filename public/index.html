@@ -28,6 +28,129 @@
   <body>
     <nav>
       <button id="homenav">Home</button>
+      <button id="singlenav">Flip a coin</button>
+      <button id="multinav">Flip multiple coins</button>
+      <button id="guessnav">Guess the result</button>
+    </nav>
+    <div id="home">
+      <h1 style = "color:#ff26ac">Yulim's Coin Games!</h1>
+      <h3>Welcome to this site. See below for more information about the games you can find here!</h3>
+      <p>There are three games on this site. </p>
+      <p><span style="color: #06a2c9">Flip a coin</span> will flip a coin and tell you the outcome (heads or tails). </p>
+      <p><span style="color:#06a2c9">Flip multiple coins</span> will ask for a certain number of flips, and will flip that many coins and provide the results.</p>
+      <p><span style="color:#06a2c9">Guess the result</span> will ask you to guess either heads or tails, then will say if you were correct or not. </p>
+      
+    </div>    
+    <div id="single" class="hidden">
+      <h1 style="color: #06a2c9">Flip a coin!</h1>
+      <p>Press the button below to flip a random coin and see its outcome.</p>
+      <br>
+      <button style = "background-color: #fc8dd2;" id="coin" onclick="one_coin()">Flip a Coin!</button> 
+      <p>Result: <span id="resultsingle"></span></p>
+      <img src="assets/img/coin.png" id="quarter" class="bigcoin">
+    </div>
+
+    <div id="multi" class="hidden">
+    <h1 style="color: #06a2c9">Flip multiple coins!</h1>
+    <p>Fill in the blank below with a number above 0. The outcomes of that many flips will be shown in two tables below!</p>
+    <br>
+    <form action="javascript:void(0);" method="post" onsubmit="flipCoins()">
+      <label for="flipnumber">Input the number of coins you want to flip!</label>
+      <input type="number" id="flipnumber" name="flipnumber">
+      <br>
+      <input style="background-color: #fc8dd2;" type="submit" value="Flip the Coins!">
+    </form>
+
+    <div id="results_tbl" class="hidden">
+      <h4>Result Summary</h4>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Flip Outcome:</th>
+            <th scope="col">Number:</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Heads</td>
+            <td><span id="num_heads"></span></td>
+          </tr>
+          <tr>
+            <td>Tails</td>
+            <td><span id="num_tails"></span></td>
+          </tr>
+        </tbody>
+      </table>
+      <h4>Result Details</h4>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Flip Number:</th>
+            <th scope="col">    Flip Outcome:</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody id="details"></tbody>
+      </table>
+    </div>
+  </div>
+
+    <div id="guess" class="hidden">
+      <h1 style="color: #06a2c9">Guess the result!</h1>
+      <p>Click either button below to call whether the flip of a coin will produce heads or tails.</p>
+      <br>
+      <button style = "background-color: #fc8dd2;" id="ghead" onclick="guess_flip('heads')">Click here to guess HEADS</button>
+      <button style = "background-color: #fc8dd2;" id="gtails" onclick="guess_flip('tails')">Click here to guess TAILS</button>
+      <br>
+
+      <h4>Your Call:</h4>
+      <p><span id="your_call"></span></p>
+      <img src="assets/img/coin.png" id="your_call_img" class="smallcoin">
+
+      <h4>Flip Result:</h4>
+      <p><span id="flip_result"></span></p>
+      <img src="assets/img/coin.png" id="flip_result_img" class="smallcoin">
+
+      <h4>Outcome:</h4>
+      <p><span id="guess_result"></span></p>
+
+    </div>
+
+	<script src="main.js"></script>
+
+  </body>
+</html>
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Coinserver</title>
+    <link rel="stylesheet" href="style.css">
+	<link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="assets/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="assets/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="assets/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="assets/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="assets/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+	<link rel="manifest" href="assets/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+  </head>
+  <body>
+    <nav>
+      <button id="homenav">Home</button>
       <button id="singlenav">Flip one coin</button>
       <button id="multinav">Flip multiple coins</button>
       <button id="guessnav">Guess the result</button>
@@ -47,3 +170,4 @@
 	<script src="main.js"></script>
   </body>
 </html>
+-->
